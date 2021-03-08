@@ -26,6 +26,7 @@ except:
     pass
 
 
+
 def py2tex(
     expr,
     print_latex=True,
@@ -137,6 +138,7 @@ def py2tex(
 
     # Parse
     pt = ast.parse(expr)
+
     if output == "tex":  # LaTex output
         Visitor = LatexVisitor(
             dummy_var=dummy_var,
@@ -165,7 +167,11 @@ def py2tex(
         s = Visitor.visit(pt.body[0].value)
     else:  # For Compare / Assign expressions
         s = Visitor.visit(pt.body[0])
-
+    # print(expr)
+    # print(pt.body[0])
+    # print(pt.body[0].value)
+    # print(Visitor)
+    # print(Visitor.visit)
     # Simplify if asked for
     if simplify_output:
         s = simplify(s)
@@ -221,8 +227,18 @@ def for2tex(a, **kwargs):
 
 
 if __name__ == "__main__":
+    from art import tprint
 
-    from test.test_functions import run_all_tests
+    tprint('Arup')
 
-    uprint("Test completed: ", bool(run_all_tests(True)))
+    py2tex("theta_modified=2*c_1*(1+(l_1/l_2)*(c_2/c_1))/l_1")
+
+    # py2tex("theta=2*sigma*c*(1+(l_1/l_2)*(c_2/c_1))/l_1")
+
+
+
+    pass
+    # from test.test_functions import run_all_tests
+
+    # uprint("Test completed: ", bool(run_all_tests(True)))
 

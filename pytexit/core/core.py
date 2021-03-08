@@ -32,8 +32,8 @@ unicode_tbl = {
     "ω": "omega",
     "ξ": "xi",
     "Δ": "Delta",
-    "φ": "Phi",
-    #    'Φ':'Phi',
+    "φ": "varphi",
+    "Φ": "Phi",
     "Γ": "Gamma",
     "Ψ": "Psi",
     "Λ": "Lambda",
@@ -458,7 +458,7 @@ class LatexVisitor(ast.NodeVisitor):
         # Standard greek letters
         
         if m in greek_letters:
-            m = r"\%s " % m
+            m = r"\%s" % m
 
         if m in math_symbols.keys():
             m = math_symbols[m]
@@ -804,7 +804,4 @@ def simplify(s):
     return s
 
 if __name__=='__main__':
-    import sys
-    print(sys.path)
-    sys.path.insert(0,'..')
-    print(math_symbols.keys())
+    print(LatexVisitor.generic_visit)
